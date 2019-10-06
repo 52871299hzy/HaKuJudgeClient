@@ -41,7 +41,9 @@ def judge(problemPath, targetPath):
             result = execute.execute(inputFile, answerFile, "temp/target", testdata["time"], testdata["memory"])
             result["id"] = testdata["id"]
             detail.append(result)
-            score += testdata["score"] * result["score"]
+            # score += testdata["score"] * result["score"]
+            result["score"] *= testdata["score"]
+            score += result["score"]
             if result["status"] != "Accepted" and "status" not in summary:
                 summary["status"] = result["status"]
             if result["time"] is None or summary["time"] is None:
